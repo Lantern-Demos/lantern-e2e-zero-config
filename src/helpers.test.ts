@@ -14,6 +14,14 @@ describe("capitalize", () => {
   it("should handle empty strings", () => {
     expect(capitalize("")).toBe("");
   });
+
+  it("should return empty string for null", () => {
+    expect(capitalize(null)).toBe("");
+  });
+
+  it("should return empty string for undefined", () => {
+    expect(capitalize(undefined)).toBe("");
+  });
 });
 
 describe("slugify", () => {
@@ -23,5 +31,21 @@ describe("slugify", () => {
 
   it("should strip special characters", () => {
     expect(slugify("Hello, World!")).toBe("hello-world");
+  });
+
+  it("should transliterate accented characters", () => {
+    expect(slugify("Héllo Wörld")).toBe("hello-world");
+  });
+
+  it("should handle unicode accents", () => {
+    expect(slugify("café résumé")).toBe("cafe-resume");
+  });
+
+  it("should return empty string for null", () => {
+    expect(slugify(null)).toBe("");
+  });
+
+  it("should return empty string for undefined", () => {
+    expect(slugify(undefined)).toBe("");
   });
 });
