@@ -1,0 +1,3 @@
+pr_workflows:
+  copilot_review: false
+  comment_reconciliation: false
