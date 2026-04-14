@@ -9,7 +9,7 @@
  */
 export function padStart(str: string, length: number, char = " "): string {
   if (char.length !== 1) {
-    throw new RangeError("padChar must be a single character");
+    throw new RangeError("char must be a single character");
   }
   return str.padStart(length, char);
 }
