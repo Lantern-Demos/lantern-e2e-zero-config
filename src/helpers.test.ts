@@ -4,7 +4,7 @@
  * @module helpers.test
  */
 
-import { capitalize, slugify } from "./helpers";
+import { capitalize, slugify, truncate } from "./helpers";
 
 describe("capitalize", () => {
   it("should capitalize the first letter", () => {
@@ -47,5 +47,27 @@ describe("slugify", () => {
 
   it("should return empty string for undefined", () => {
     expect(slugify(undefined)).toBe("");
+  });
+});
+
+describe("truncate", () => {
+  it("should return the original string if within maxLength", () => {
+    expect(truncate("hello", 10)).toBe("hello");
+  });
+
+  it("should truncate and append default ellipsis", () => {
+    expect(truncate("hello world", 8)).toBe("hello...");
+  });
+
+  it("should use custom ellipsis", () => {
+    expect(truncate("hello world", 7, "…")).toBe("hello w…");
+  });
+
+  it("should handle maxLength <= ellipsis length", () => {
+    expect(truncate("hello", 2)).toBe("he");
+  });
+
+  it("should handle maxLength equal to ellipsis length", () => {
+    expect(truncate("hello", 3)).toBe("hel");
   });
 });
